@@ -17,18 +17,6 @@ ${LOGROTATE_LOGFILES}
 }
 EOF
 
-# cat > /etc/logrotate.conf << EOF
-# /tmp/ray/**/worker-*.out /tmp/ray/**/worker-*.err
-# {
-#     nomail
-#     maxsize 250M
-# 	copytruncate
-# 	missingok
-# 	rotate 5
-# 	delaycompress
-# }
-# EOF
-
 cat /etc/logrotate.conf
 
 cron_expr="0 * * * *" # Default value
