@@ -8,7 +8,7 @@ cat > /etc/logrotate.conf << EOF
 ${LOGROTATE_LOGFILES}
 {
   nomail
-  maxsize ${LOGROTATE_MAXFILESIZE:250M}
+  maxsize ${LOGROTATE_MAXFILESIZE:250*1024*1024}
   missingok
   notifempty
   copytruncate
