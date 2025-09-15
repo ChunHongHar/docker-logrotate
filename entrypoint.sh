@@ -39,7 +39,7 @@ else
 fi
 
 logrotate_cmd="/usr/sbin/logrotate -v /etc/logrotate.conf $logrotate_cronlog"
-echo "$cron_expr logrotate /bin/bash -c $logrotate_cmd" >> /var/spool/cron/crontabs/logrotate
+echo "$cron_expr logrotate /bin/bash -c $logrotate_cmd" >> /var/spool/cron/crontabs/$LOGROTATE_USER
 
 echo "$@"
 exec "$@"
