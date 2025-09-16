@@ -35,11 +35,12 @@ else
 #   if [ -n "${SYSLOGGER}" ]; then
 #     logrotate_cronlog=" 2>&1 | "${syslogger_command}
 #   fi
-    logrotate_cronlog=" >/proc/1/fd/1 2>/proc/1/fd/2"
+    logrotate_cronlog=">/proc/1/fd/1 2>/proc/1/fd/2"
 fi
 
 logrotate_cmd="/usr/sbin/logrotate -v /etc/logrotate.conf $logrotate_cronlog"
-echo "$cron_expr logrotate /bin/bash -c $logrotate_cmd" >> /var/spool/cron/crontabs/$LOGROTATE_USER
+echo "$cron_expr $LOGROTATE_USER /bin/bash -c '$logrotate_cmd'"
+echo "$cron_expr $LOGROTATE_USER /bin/bash -c '$logrotate_cmd'" | crontab -u $LOGROTATE_USER -
 
 echo "$@"
 exec "$@"
