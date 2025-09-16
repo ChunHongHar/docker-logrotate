@@ -30,8 +30,9 @@ adduser --uid $CONTAINER_UID --gid $CONTAINER_GID --shell /bin/bash --disabled-p
 apt update -y \
     && apt --no-install-recommends install -y \
         cron \
-        tini \
         logrotate \
+        tini \
+        tzdata \
     && apt clean \
     && rm -rf /var/lib/apt/lists/* \
     && apt remove apt --autoremove -y --allow-remove-essential
