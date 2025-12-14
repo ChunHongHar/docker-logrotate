@@ -10,7 +10,7 @@ ENV LOGROTATE_USER=$LOGROTATE_USER
 ARG LOGROTATE_GROUP=logrotate
 
 # Logrotate setting
-ARG LOGROTATE_CRON_EXPR
+ARG LOGROTATE_CRON_EXPR="0 * * * *" # Default value
 ENV LOGROTATE_CRON_EXPR=$LOGROTATE_CRON_EXPR
 ARG LOGROTATE_LOGFILES="/tmp/ray/**/worker-*.out /tmp/ray/**/worker-*.err"
 ARG LOGROTATE_MAXFILESIZE
@@ -42,7 +42,6 @@ rm -rf /etc/cron.*/*
 
 EOF
 
-COPY . /app
 COPY --chmod=755 entrypoint.sh /app/entrypoint.sh
 
 ENTRYPOINT ["/usr/bin/tini", "--", "/app/entrypoint.sh"]
